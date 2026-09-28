@@ -1,6 +1,10 @@
 FROM --platform=linux/amd64 vllm/vllm-openai:v0.11.0@sha256:d8d39b59e909d2378ac4feeb191f7e7b6f1342477dc66b7c47cec89e9985ad8a
 
 WORKDIR /app
+# Satisfy PyGObject's missing dependency inherited from the upstream image.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential libcairo2-dev pkg-config python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt constraints.txt versions.json ./
 RUN python3 -m pip install --no-cache-dir -c constraints.txt -r requirements.txt \
     && python3 -m pip check
