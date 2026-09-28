@@ -1,0 +1,13 @@
+{
+  "base_image": "vllm/vllm-openai:v0.11.0@sha256:d8d39b59e909d2378ac4feeb191f7e7b6f1342477dc66b7c47cec89e9985ad8a",
+  "encoder_repo": "Qwen/Qwen3-8B",
+  "encoder_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "head_repo": "Contrastive-LM/CLM-v0.1-8B",
+  "head_revision": "e939398d4556fcd9400c76fa8c5a513202f42b0a",
+  "head_filename": "CLM_v0.1-8B.pt",
+  "head_sha256": "b2b4a8c9c2d39263eff78a351eb909a342ce9b3bf21a3f07c1d1bf15f1c4eda5",
+  "contrastive_lm_wheel_sha256": "7f3eed12d3aa10173f71bac7e50fc387565b485a2a2fc4c4323af32b1950055f",
+  "contrastive_lm": "0.1.0",
+  "runpod": "1.12.0",
+  "validation": "Manifest resolved; GPU image has not yet been run. See VALIDATION.md."
+}

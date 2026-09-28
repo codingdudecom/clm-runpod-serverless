@@ -1,0 +1,10 @@
+.git
+.github
+.venv
+__pycache__
+tests
+examples
+*.pt
+*.safetensors
+.env
+measurements*.json

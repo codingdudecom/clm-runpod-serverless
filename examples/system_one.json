@@ -1,0 +1,17 @@
+{
+  "input": {
+    "operation": "system_one",
+    "state": "Customer: my invoice was charged twice and nobody answers the phone!",
+    "questions": {
+      "urgency": {"type": "noul", "instructions": "Is this urgent?"},
+      "department": {
+        "type": "choice", "instructions": "Which team should handle this?",
+        "criteria": {"billing": "Charges, invoices, refunds", "technical": "Bugs and outages"}
+      },
+      "frustration": {
+        "type": "score", "instructions": "How frustrated is the customer?",
+        "criteria": ["Calm", "Frustrated", "Very angry"]
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+# Preserve the CUDA/PyTorch stack provided by the pinned official image.
+vllm==0.11.0
+torch==2.8.0

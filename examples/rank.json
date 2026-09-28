@@ -1,0 +1,7 @@
+{
+  "input": {
+    "operation": "rank",
+    "state": "What causes tides on Earth?",
+    "candidates": ["The Moon's gravitational pull.", "Photosynthesis in plants.", "Because the Earth is round."]
+  }
+}
