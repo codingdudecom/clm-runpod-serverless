@@ -10,7 +10,7 @@ AWS CloudShell or another cloud terminal.
 
 ## 1. Upload to GitHub
 
-1. Create a repository named **clm-runpod-serverless** in your GitHub account.
+1. Create a repository named **I** in your GitHub account.
 2. Extract the supplied source ZIP and upload the contents using GitHub's
    **Add file → Upload files**. Put `Dockerfile` directly at the repository root,
    alongside `handler.py`, `startup.py`, `versions.json`, and the other files.
