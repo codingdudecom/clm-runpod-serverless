@@ -1,4 +1,4 @@
 contrastive-lm==0.1.0
-runpod==1.12.0
+runpod==1.7.13
 # The base image includes PyGObject; pip check requires its Cairo Python binding.
 pycairo==1.28.0
