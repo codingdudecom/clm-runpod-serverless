@@ -139,6 +139,132 @@ longer inputs, increase `MAX_MODEL_LEN` (it controls both vLLM and the CLM embed
 then repeat GPU memory and truncation validation. Probabilities are relative to
 the supplied candidate set, not calibrated standalone confidence scores.
 
+## Request examples
+
+Paste any example into Runpod's **Requests** editor and click **Run**.
+
+### Rank answers or actions
+
+Returns candidates sorted best first, with probabilities.
+
+```json
+{
+  "input": {
+    "operation": "rank",
+    "state": "What causes tides on Earth?",
+    "instructions": "Rank the answers by scientific accuracy.",
+    "candidates": [
+      "The Moon's gravitational pull.",
+      "Photosynthesis in plants.",
+      "Because the Earth is round."
+    ],
+    "temperature": 1.0
+  }
+}
+```
+
+### Choice: select a category
+
+Map category IDs to descriptions in `criteria`.
+
+```json
+{
+  "input": {
+    "operation": "system_one",
+    "state": "I was charged twice for my subscription. Please refund the duplicate payment.",
+    "questions": {
+      "department": {
+        "type": "choice",
+        "instructions": "Which department should handle this request?",
+        "criteria": {
+          "billing": "Payments, invoices, charges, and refunds",
+          "technical": "Software bugs, errors, and outages",
+          "sales": "Product information and purchasing"
+        }
+      }
+    }
+  }
+}
+```
+
+### Noul: assess a yes/no-style question
+
+```json
+{
+  "input": {
+    "operation": "system_one",
+    "state": "Our production website is offline and customers cannot complete purchases.",
+    "questions": {
+      "urgent": {
+        "type": "noul",
+        "instructions": "Does this issue require urgent attention?"
+      }
+    }
+  }
+}
+```
+
+### Score: assess an ordered scale
+
+List `criteria` from low to high.
+
+```json
+{
+  "input": {
+    "operation": "system_one",
+    "state": "This is the third time I have contacted support. I am extremely angry that this still hasn't been fixed!",
+    "questions": {
+      "frustration": {
+        "type": "score",
+        "instructions": "How frustrated is the customer?",
+        "criteria": [
+          "Calm",
+          "Slightly frustrated",
+          "Frustrated",
+          "Very angry"
+        ]
+      }
+    }
+  }
+}
+```
+
+### Combine question types
+
+Ask several questions about the same state in one job.
+
+```json
+{
+  "input": {
+    "operation": "system_one",
+    "state": "My invoice was charged twice. I need my money back today, and nobody is answering my emails!",
+    "questions": {
+      "department": {
+        "type": "choice",
+        "instructions": "Which team should handle this?",
+        "criteria": {
+          "billing": "Charges, invoices, and refunds",
+          "technical": "Bugs and outages"
+        }
+      },
+      "urgency": {
+        "type": "noul",
+        "instructions": "Does this need urgent attention?"
+      },
+      "frustration": {
+        "type": "score",
+        "instructions": "How frustrated is the customer?",
+        "criteria": ["Calm", "Frustrated", "Very angry"]
+      }
+    },
+    "temperature": 1.0
+  }
+}
+```
+
+`temperature` is optional (default `1.0`): lower values sharpen probabilities;
+higher values flatten them. CLM scores possibilities; it does not generate text.
+
 ## Cold starts, memory, and cost
 
 - BF16 encoder weights occupy roughly 16 GB before runtime overhead. 24 GB is the
